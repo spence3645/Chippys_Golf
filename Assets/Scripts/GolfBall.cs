@@ -10,6 +10,8 @@ public class GolfBall : MonoBehaviour
 
     public bool bScored;
 
+    public AudioSource winSound;
+
     Door exitDoor;
 
     // Start is called before the first frame update
@@ -38,6 +40,7 @@ public class GolfBall : MonoBehaviour
     public void Scored()
     {
         exitDoor.Unlock();
+        winSound.Play();
     }
 
     private void OnTriggerEnter(Collider other)

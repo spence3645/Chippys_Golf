@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioReverb;
     public AudioSource audioWalking;
 
+    public GameObject chippy;
+
     Door exitDoor;
 
     Rigidbody rb;
@@ -194,6 +196,8 @@ public class PlayerController : MonoBehaviour
             {
                 audioReverb.Play();
                 GameObject.Find("Lights").SetActive(false);
+
+                Instantiate(chippy, GameObject.Find("Chippy Spawn").transform);
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
