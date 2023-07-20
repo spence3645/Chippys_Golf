@@ -7,6 +7,8 @@ public class SceneManagement : MonoBehaviour
     public int par;
     public int holeNum;
 
+    private int finalHole = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +19,10 @@ public class SceneManagement : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int GetFinalHole()
+    {
+        return finalHole;
     }
 }

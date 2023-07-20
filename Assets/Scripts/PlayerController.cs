@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         sceneManage = GameObject.Find("Scene").GetComponent<SceneManagement>();
 
         puttingCamera.enabled = false;
+        walkingCamera.enabled = true;
 
         Cursor.visible = false;
     }
@@ -114,6 +115,8 @@ public class PlayerController : MonoBehaviour
                 golfBall = hit.transform.gameObject;
                 golfBall.GetComponent<GolfBall>().arrow.SetActive(true);
                 transform.position = hit.transform.position - (hit.transform.right * 0.5f);
+
+                rb.isKinematic = true;
 
                 bPutting = true;
 
@@ -185,6 +188,7 @@ public class PlayerController : MonoBehaviour
             golfBall.GetComponent<GolfBall>().Hit(shotPower);
             golfBall.GetComponent<GolfBall>().arrow.SetActive(false);
             bPutting = false;
+            rb.isKinematic = false;
 
             puttingCamera.enabled = false;
 
@@ -196,7 +200,7 @@ public class PlayerController : MonoBehaviour
             {
                 audioReverb.Play();
                 GameObject.Find("Lights").SetActive(false);
-
+                Destroy(golfBall);
                 Instantiate(chippy, GameObject.Find("Chippy Spawn").transform);
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }

@@ -25,7 +25,11 @@ public class Door : MonoBehaviour
     {
         if (!bIsLocked)
         {
-            SceneManager.LoadScene("Hole " + (sceneManage.holeNum + 1));
+            if(sceneManage.holeNum == sceneManage.GetFinalHole())
+                SceneManager.LoadScene("Finish");
+            else
+                SceneManager.LoadScene("Hole " + (sceneManage.holeNum + 1));
+
             return true;
         }
         else

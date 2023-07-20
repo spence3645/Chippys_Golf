@@ -26,7 +26,6 @@ public class Chippy : MonoBehaviour
             if(Vector3.Distance(transform.position, GameObject.Find("Player").transform.position) <= 0.5f)
             {
                 bRunning = false;
-                GameObject.Find("Player").transform.LookAt(transform.position);
                 audioScare.Play();
                 StartCoroutine(ScarePlayer());
             }
@@ -35,7 +34,7 @@ public class Chippy : MonoBehaviour
 
     IEnumerator ThreatenPlayer()
     {
-        yield return new WaitForSeconds(Random.Range(5f, 9f));
+        yield return new WaitForSeconds(Random.Range(4, 10));
 
         bRunning = true;
 
@@ -44,7 +43,7 @@ public class Chippy : MonoBehaviour
 
     IEnumerator ScarePlayer()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
