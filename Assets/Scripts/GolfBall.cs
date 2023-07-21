@@ -11,6 +11,7 @@ public class GolfBall : MonoBehaviour
     public bool bScored;
 
     public AudioSource winSound;
+    public AudioSource puttSound;
 
     Door exitDoor;
 
@@ -26,15 +27,12 @@ public class GolfBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rb.velocity.magnitude <= 0.1)
-        {
-            
-        }
     }
 
     public void Hit(float power)
     {
         rb.AddForce(transform.forward * power);
+        puttSound.Play();
     }
 
     public void Scored()

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    bool bIsLocked = true;
+    public bool bIsLocked = true;
 
     SceneManagement sceneManage;
 
@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
         
     }
 
-    public bool Open()
+    public void Open()
     {
         if (!bIsLocked)
         {
@@ -29,11 +29,12 @@ public class Door : MonoBehaviour
                 SceneManager.LoadScene("Finish");
             else
                 SceneManager.LoadScene("Hole " + (sceneManage.holeNum + 1));
-
-            return true;
         }
-        else
-            return false;
+    }
+
+    public bool GetStatus()
+    {
+        return bIsLocked;
     }
 
     public void Unlock()

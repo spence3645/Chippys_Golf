@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject.Find("Interact Text").GetComponent<Text>().text = "";
+
         if (!bPutting)
         {
             Move();
@@ -109,34 +111,40 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 2))
         {
-            if(hit.transform.tag == "Ball" && Input.GetKeyDown(KeyCode.E))
+            if(hit.transform.tag == "Ball" && exitDoor.bIsLocked)
             {
-                transform.parent = hit.transform;
-                golfBall = hit.transform.gameObject;
-                golfBall.GetComponent<GolfBall>().arrow.SetActive(true);
-                transform.position = hit.transform.position - (hit.transform.right * 0.5f);
+                GameObject.Find("Interact Text").GetComponent<Text>().text = "Press E to Putt";
 
-                rb.isKinematic = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    GameObject.Find("Interact Text").GetComponent<Text>().text = "";
 
-                bPutting = true;
+                    transform.parent = hit.transform;
+                    golfBall = hit.transform.gameObject;
+                    golfBall.GetComponent<GolfBall>().arrow.SetActive(true);
+                    transform.position = hit.transform.position - (hit.transform.right * 0.5f);
 
-                puttingCamera.enabled = true;
+                    rb.isKinematic = true;
 
-                transform.LookAt(hit.transform.position);
-                walkingCamera.transform.LookAt(hit.transform.position);
+                    bPutting = true;
+
+                    puttingCamera.enabled = true;
+
+                    transform.LookAt(hit.transform.position);
+                    walkingCamera.transform.LookAt(hit.transform.position);
+                }
             }
-            else if(hit.transform.tag == "Door" && Input.GetKeyDown(KeyCode.E))
+            else if(hit.transform.tag == "Door")
             {
-                var b = exitDoor.Open();
-
-                if (b)
-                {
-                    print("Open");
-                }
+                if (exitDoor.GetStatus())
+                    GameObject.Find("Interact Text").GetComponent<Text>().text = "Door Locked: Get Par or Below to Unlock";
                 else
+                    GameObject.Find("Interact Text").GetComponent<Text>().text = "Press E to Open Door";
+
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    print("Locked");
-                }
+                    exitDoor.Open();
+                }         
             }
         }
     }
