@@ -22,6 +22,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Hole 1");
     }
 
+    public void Practice()
+    {
+        SceneManager.LoadScene("Practice");
+    }
+
     public void Main()
     {
         SceneManager.LoadScene("Entrance");

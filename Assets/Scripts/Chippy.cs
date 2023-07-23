@@ -10,10 +10,12 @@ public class Chippy : MonoBehaviour
     public AudioSource audioRunning;
     public AudioSource audioScare;
 
+    public GameObject light;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ThreatenPlayer()); 
+        StartCoroutine(ThreatenPlayer());
     }
 
     // Update is called once per frame
@@ -23,10 +25,17 @@ public class Chippy : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player").transform.position, 10 * Time.deltaTime);
 
-            if(Vector3.Distance(transform.position, GameObject.Find("Player").transform.position) <= 0.5f)
+            transform.LookAt(GameObject.Find("Player").transform.position);
+
+            if (Vector3.Distance(transform.position, GameObject.Find("Player").transform.position) <= 0.5f)
             {
                 bRunning = false;
                 audioScare.Play();
+                GameObject.Find("Player").transform.LookAt(transform.position);
+                GameObject.Find("Player").GetComponent<PlayerController>().bScared = true;
+                GameObject.Find("Player").GetComponent<Rigidbody>().isKinematic = true;
+                transform.Find("Jump Camera").GetComponent<Camera>().enabled = true;
+                light.SetActive(true);
                 StartCoroutine(ScarePlayer());
             }
         }
@@ -43,7 +52,7 @@ public class Chippy : MonoBehaviour
 
     IEnumerator ScarePlayer()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

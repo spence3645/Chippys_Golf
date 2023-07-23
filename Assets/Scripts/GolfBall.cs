@@ -8,6 +8,8 @@ public class GolfBall : MonoBehaviour
 
     public GameObject arrow;
 
+    PlayerController controller;
+
     public bool bScored;
 
     public AudioSource winSound;
@@ -20,6 +22,8 @@ public class GolfBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         arrow = transform.Find("Arrow").gameObject;
+
+        controller = GameObject.Find("Player").GetComponent<PlayerController>();
 
         exitDoor = GameObject.Find("Door").GetComponent<Door>();
     }
@@ -38,7 +42,16 @@ public class GolfBall : MonoBehaviour
     public void Scored()
     {
         exitDoor.Unlock();
+        controller.audioHeartbeat.Stop();
         winSound.Play();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Room")
+        {
+            controller.Death();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

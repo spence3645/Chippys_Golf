@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fd4e08cfd2dda4bbd6f0fa39ce12ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  par: 4
+  par: 3
   holeNum: 3
 --- !u!4 &451770846
 Transform:
@@ -933,6 +933,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: hole 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1892106596026101635, guid: 27d639328702c8642a185d66d7ee5ee1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8343248219658952724, guid: 27d639328702c8642a185d66d7ee5ee1, type: 3}
+      propertyPath: m_TagString
+      value: Room
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1005,6 +1013,14 @@ PrefabInstance:
     - target: {fileID: 1914968472865017666, guid: 6cb276c26ee93c74baf951339249876e, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247656519712962390, guid: 6cb276c26ee93c74baf951339249876e, type: 3}
+      propertyPath: bIsLocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247656519712962390, guid: 6cb276c26ee93c74baf951339249876e, type: 3}
+      propertyPath: bIsPractice
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1098,7 +1114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7211340573964901719, guid: 79277c2b98bc3ba4382a06308d5f3c6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7211340573964901719, guid: 79277c2b98bc3ba4382a06308d5f3c6f, type: 3}
       propertyPath: m_LocalPosition.z

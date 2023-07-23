@@ -8,7 +8,7 @@ public class SceneManagement : MonoBehaviour
     public int par;
     public int holeNum;
 
-    private int finalHole = 3;
+    private int finalHole = 5;
 
     Text parText; 
 

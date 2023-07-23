@@ -63,19 +63,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 39c90fd160a8fe74482beaaa3e75dd48, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39c90fd160a8fe74482beaaa3e75dd48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.055
+      value: 0.16143727
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39c90fd160a8fe74482beaaa3e75dd48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.009
+      value: 1.992
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39c90fd160a8fe74482beaaa3e75dd48, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.041
+      value: 10.034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39c90fd160a8fe74482beaaa3e75dd48, type: 3}
       propertyPath: m_LocalRotation.w
@@ -107,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39c90fd160a8fe74482beaaa3e75dd48, type: 3}
       propertyPath: m_Name
-      value: Door Variant
+      value: Door 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39c90fd160a8fe74482beaaa3e75dd48, type: 3}
       propertyPath: m_TagString
@@ -146,3 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea10cdfc235e64d4893c79077e32369a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bIsLocked: 0
+  bIsPractice: 1

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour
 {
     public bool bIsLocked = true;
+    public bool bIsPractice = false;
 
     SceneManagement sceneManage;
 
@@ -27,6 +28,8 @@ public class Door : MonoBehaviour
         {
             if(sceneManage.holeNum == sceneManage.GetFinalHole())
                 SceneManager.LoadScene("Finish");
+            else if(sceneManage.holeNum == -1)
+                SceneManager.LoadScene("Entrance");
             else
                 SceneManager.LoadScene("Hole " + (sceneManage.holeNum + 1));
         }

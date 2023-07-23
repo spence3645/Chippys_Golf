@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource audioReverb;
     public AudioSource audioWalking;
+    public AudioSource audioHeartbeat;
+
+    public AudioClip[] heartbeats;
 
     public GameObject chippy;
 
@@ -17,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
 
-    Camera walkingCamera;
+    public Camera walkingCamera;
     Camera puttingCamera;
 
     public Image chargeMeter;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     bool bPutting;
     bool bCountingUp;
+    public bool bScared;
 
     int speed = 2;
     int hitCount = 0;
@@ -56,7 +60,11 @@ public class PlayerController : MonoBehaviour
     {
         GameObject.Find("Interact Text").GetComponent<Text>().text = "";
 
-        if (!bPutting)
+        if (bScared)
+        {
+
+        }
+        else if (!bPutting)
         {
             Move();
             Look();
@@ -111,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 2))
         {
-            if(hit.transform.tag == "Ball" && exitDoor.bIsLocked)
+            if(hit.transform.tag == "Ball" && (exitDoor.bIsLocked || exitDoor.bIsPractice))
             {
                 GameObject.Find("Interact Text").GetComponent<Text>().text = "Press E to Putt";
 
@@ -206,12 +214,39 @@ public class PlayerController : MonoBehaviour
 
             if (hitCount > sceneManage.par)
             {
-                audioReverb.Play();
-                GameObject.Find("Lights").SetActive(false);
-                Destroy(golfBall);
-                Instantiate(chippy, GameObject.Find("Chippy Spawn").transform);
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Death();
+            }
+            else if((float)hitCount / sceneManage.par <= 0.2f)
+            {
+                audioHeartbeat.clip = heartbeats[0];
+                audioHeartbeat.Play();
+            }
+            else if((float)hitCount / sceneManage.par > 0.2f && (float)hitCount / sceneManage.par <= 0.4f)
+            {
+                audioHeartbeat.clip = heartbeats[1];
+                audioHeartbeat.Play();
+            }
+            else if ((float)hitCount / sceneManage.par > 0.4f && (float)hitCount / sceneManage.par <= 0.6f)
+            {
+                print("Hello");
+                audioHeartbeat.clip = heartbeats[2];
+                audioHeartbeat.Play();
+            }
+            else if ((float)hitCount / sceneManage.par > 0.6f && (float)hitCount / sceneManage.par <= 1.0f)
+            {
+                audioHeartbeat.clip = heartbeats[3];
+                audioHeartbeat.Play();
             }
         }
+    }
+
+    public void Death()
+    {
+        audioReverb.Play();
+        audioHeartbeat.Stop();
+        GameObject.Find("Lights").SetActive(false);
+        Destroy(golfBall);
+        Instantiate(chippy, GameObject.Find("Chippy Spawn").transform);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
